@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>The Vitruvian Man</title>
+		<link href='http://fonts.googleapis.com/css?family=Monsieur+La+Doulaise' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+		<style>
+			body
+			{
+				text-align: center;
+				font-family: 'Calligraffitti', cursive;
+				font-size: 2em;
+			}
+			sub
+			{
+				font-size: 0.3em;
+			}
+		</style>
+
+		<script>
+
+			var canvas;
+			var context;
+
+			function initCanvas()
+			{
+				canvas = document.getElementById('a');
+				context = canvas.getContext("2d");
+				draw_grid(700,50);
+				//draw_cross(350,400,200,"#ccc");
+				//draw_cross(350,355,172.5,"#ccc");
+				draw_rect(150,200,400,400);
+				draw_circle(350,355,245);
+				draw_rect(350,355,0.5,0.5);
+				draw_rect(350,400,0.5,0.5);
+				draw_rect(300,275,100,125); //abdomen
+				draw_rect(335,260,30,15);	//neck
+				draw_rect(325,200,50,60);	//face
+				draw_rect(300,400,50,100); 	//right thigh
+				draw_rect(350,400,50,100);	//left thigh
+				draw_rect(310,500,40,90); 	//right leg
+				draw_rect(360,500,40,90);	//left leg
+				draw_rect(310,590,50,10); 	//right foot
+				draw_rect(360,590,60,10);	//left foot
+				draw_rect(240,275,60,40);	//right arm
+				draw_rect(400,275,60,40);	//left arm
+				draw_rect(180,277,60,35);	//right forearm
+				draw_rect(460,277,60,35);	//left forearm
+				draw_rect(150,273,30,30);	//right hand
+				draw_rect(520,273,30,30);	//left hand
+
+				draw_line(380,280,450,240);
+				draw_line(390,320,460,280);
+				//draw_line(380,280,390,320);
+				draw_line(450,240,460,280);
+
+				draw_line(452,245,507,215);
+				draw_line(460,280,515,250);
+				draw_line(507,215,515,255);
+
+				draw_line(509,220,540,200);
+				draw_line(515,255,546,235);
+				draw_line(540,200,546,235);
+
+
+				draw_line(320,280,250,240);
+				draw_line(310,320,240,280);
+				//draw_line(320,280,310,320);
+				draw_line(250,240,240,280);
+
+				draw_line(248,245,193,215);
+				draw_line(240,280,185,250);
+				draw_line(193,215,185,255);
+
+				draw_line(191,220,160,200);
+				draw_line(185,255,154,235);
+				draw_line(160,200,154,235);
+
+				draw_line(300,390,260,480);
+				draw_line(350,400,310,490);
+				draw_line(260,480,310,490);
+
+				draw_line(263,480,229,553);
+				draw_line(307,490,269,573);
+				draw_line(229,553,269,573);
+				draw_line(229,553,220,564);
+				draw_line(269,573,267,585);
+
+				draw_line(400,390,440,480);
+				draw_line(350,400,390,490);
+				draw_line(440,480,390,490);
+
+				draw_line(437,480,471,553);
+				draw_line(393,490,431,573);
+				draw_line(471,553,431,573);
+				draw_line(471,553,492,554);
+				draw_line(431,573,433,585);
+			}
+
+			function draw_line(x1,y1,x2,y2)
+			{
+				x1+=0.5;
+				x2+=0.5;
+				y1+=0.5;
+				y2+=0.5;
+				context.beginPath();
+				context.moveTo(x1,y1);
+				context.lineTo(x2,y2);
+				context.strokeStyle = "#000";
+				context.stroke();
+			}
+
+			function draw_grid(l,u)
+			{
+				context.beginPath();
+				for (var i = 0.5; i <= l+0.5; i+=u) 
+				{
+					context.moveTo(i,0.5);
+					context.lineTo(i,l);
+					context.moveTo(0.5,i);
+					context.lineTo(l,i);	
+				}
+				context.strokeStyle = "#ccc";
+				context.stroke();
+			}
+
+			function draw_rect(x,y,l,b)
+			{
+				x+=0.5;
+				y+=0.5;
+				context.beginPath();
+				context.rect(x,y,l,b);
+				context.strokeStyle = "#000";
+				context.stroke();
+			}
+
+			function draw_circle(x,y,r)
+			{
+				x+=0.5;
+				y+=0.5;
+				context.beginPath();
+				context.arc(x,y,r,0,Math.PI*2,false);
+				context.strokeStyle = "#000";
+				context.stroke();
+			}
+
+			function draw_cross(x,y,l,c)
+			{
+				x+=0.5;
+				y+=0.5;
+				context.beginPath();
+				context.moveTo(x-l,y-l);
+				context.lineTo(x+l,y+l);
+				context.moveTo(x-l,y+l);
+				context.lineTo(x+l,y-l);
+				context.strokeStyle = c;
+				context.stroke();
+			}
+
+		</script>
+	</head>	
+
+	<body>
+		<h1>The Vitruvian Man<sub>- Chintan Ghate</sub></h1>
+		<canvas id="a" width = "710" height = "710">
+		</canvas>
+		<script>
+			initCanvas();
+		</script>
+	</body>
+</html>
