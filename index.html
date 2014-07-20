@@ -4,7 +4,6 @@
 
 	<head>
 		<title>The Vitruvian Man</title>
-		<link href='http://fonts.googleapis.com/css?family=Monsieur+La+Doulaise' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
 		<style>
 			body
@@ -22,6 +21,29 @@
 				font-size: 0.15em;
 				vertical-align: top;
 			}
+			#container
+			{
+				width: 800px;
+				text-align: center;
+				margin:0 auto;
+			}
+
+			#prev
+			{
+				border-width: 2px;
+				border-color: black;
+				float: left;
+				margin-top: 15px;
+			}
+
+			#next
+			{
+				border-width: 2px;
+				border-color: black;
+				float: right;
+				margin-top: 15px;
+			}
+
 		</style>
 
 		<script>
@@ -34,8 +56,6 @@
 				canvas = document.getElementById('a');
 				context = canvas.getContext("2d");
 				draw_grid(700,50);
-				//draw_cross(350,400,200,"#ccc");
-				//draw_cross(350,355,172.5,"#ccc");
 				draw_rect(150,200,400,400);
 				draw_circle(350,355,245);
 				draw_rect(350,355,0.5,0.5);
@@ -152,24 +172,14 @@
 				context.stroke();
 			}
 
-			function draw_cross(x,y,l,c)
-			{
-				x+=0.5;
-				y+=0.5;
-				context.beginPath();
-				context.moveTo(x-l,y-l);
-				context.lineTo(x+l,y+l);
-				context.moveTo(x-l,y+l);
-				context.lineTo(x+l,y-l);
-				context.strokeStyle = c;
-				context.stroke();
-			}
-
 		</script>
 	</head>	
 
-	<body>
+	<body><div id="container">
+		<a href="GoldenSpiral.html"><img id="prev" src="prev.png" width="50" height="50" /></a>
+		<a href="GoldenSpiral.html"><img id="next" src="next.png" width="50" height="50" /></a>
 		<h1><sup>July 20, 2014</sup>The Vitruvian Man<sub>- Chintan Ghate</sub></h1>
+		</div>
 		<canvas id="a" width = "710" height = "710">
 		</canvas>
 		<script>
