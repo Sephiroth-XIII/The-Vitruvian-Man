@@ -3,7 +3,7 @@
 <html>
 
 	<head>
-		<title>Golden Spiral</title>
+		<title>Hypnotic</title>
 		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
 		<style>
 
@@ -61,63 +61,51 @@
 			{
 				canvas = document.getElementById('a');
 				context = canvas.getContext("2d");
-				draw_grid(1000,650,50);
+			}
 
+			function rotate() 
+			{
+  				context.clearRect(0, 0, canvas.width, canvas.height);
+  				context.translate(canvas.width/2, canvas.width/2);
+  				context.rotate(Math.PI / 90);
+  				context.translate(-canvas.width/2, -canvas.width/2);
 				var angle = 0;
-				var a = 0;
-				var b = 0.001;
 				var j = 0;
 				var dx = [-1,0,1,0];
 				var dy = [0,-1,0,1];
-				var cenX = 315.5;
-				var cenY = 425.5;
-				for (var i = a+b; j < 28; i = a+b) 
+				var cenX = 350;
+				var cenY = 350;
+				var dist = 5;
+				var lineWidth = 0;
+
+				for (var i = 0; i < 300; i+=dist) 
 				{
 					context.beginPath();
-					cenX += (dx[j%4]*a);
-					cenY += (dy[j%4]*a);
-					context.moveTo(cenX,cenY);
+					lineWidth += 0.2;
+					context.lineWidth = lineWidth;
+					cenX += (dx[j%4]*dist);
+					cenY += (dy[j%4]*dist);
 					context.arc(cenX,cenY,i,angle,angle+Math.PI/2,false);
-					context. closePath();
 					context.strokeStyle = "#000";
 					context.stroke();
 					angle += Math.PI/2;
-					a = b;
-					b = i;
 					j++;
-				}
+				}	
 			}
 
-			function draw_grid(w,h,u)
-			{
-				w+=0.5;
-				h+=0.5;
-				context.beginPath();
-				for (var i = 0.5; i <= w+0.5; i+=u) 
-				{
-					context.moveTo(i,0.5);
-					context.lineTo(i,h);	
-				}
-				for (var i = 0; i <= h+0.5; i+=u) 
-				{
-					context.moveTo(0.5,i);
-					context.lineTo(w,i);
-				};
-				context.strokeStyle = "#ccc";
-				context.stroke();
-			}
+			setInterval(rotate, 1);
 
 		</script>
 	</head>	
 
 	<body>
 		<div id="container">
-		<a href="GoldenSpiral.html"><img id="prev" src="prev.png" width="50" height="50" /></a>
-		<a href="Hypnotic.html"><img id="next" src="next.png" width="50" height="50" /></a>
-		<h1><sup>July 21, 2014</sup>Golden Spiral<sub>- Chintan Ghate</sub></h1>
+		<a href="GoldenSpiralAlgo.html"><img id="prev" src="prev.png" width="50" height="50" /></a>
+		<a href="index.html"><img id="next" src="next.png" width="50" height="50" /></a>
+		<h1><sup>July 22, 2014</sup>Hypnotic<sub>- Chintan Ghate</sub></h1>
 		</div>		
-		<p>Using an algorithm</p>
-		<canvas id="a" width = "1010" height = "661">
+		<p>Concentrate at the centre !!!</p>
+		<canvas id="a" width = "700" height = "700">
 		</canvas>
 		<script>
 			initCanvas();
