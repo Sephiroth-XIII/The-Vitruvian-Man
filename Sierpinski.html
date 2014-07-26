@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Sierpinski Triangle</title>
+		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+		<style>
+			body
+			{
+				text-align: center;
+				font-family: 'Calligraffitti', cursive;
+				font-size: 2em;
+			}
+			sub
+			{
+				font-size: 0.15em;
+			}
+			sup
+			{
+				font-size: 0.15em;
+				vertical-align: top;
+			}
+			p
+			{
+				font-size: 0.5em;
+			}
+
+			#container
+			{
+				width: 800px;
+				text-align: center;
+				margin:0 auto;
+			}
+
+			#prev
+			{
+				border-width: 2px;
+				border-color: black;
+				float: left;
+				margin-top: 15px;
+			}
+
+			#next
+			{
+				border-width: 2px;
+				border-color: black;
+				float: right;
+				margin-top: 15px;
+			}
+
+		</style>
+
+		<script>
+
+			var canvas;
+			var context;
+
+			var x = [10.0,710.0,360.0];
+			var y = [610.0,610.0,13.7822];
+
+			var X = 0;
+			var Y = 0;
+
+			function initCanvas()
+			{
+				canvas = document.getElementById('a');
+				context = canvas.getContext("2d");
+			
+				context.moveTo(x[0],y[0]);
+				context.lineTo(x[1],y[1]);
+				context.lineTo(x[2],y[2]);
+				context.lineTo(x[0],y[0]);
+
+				context.strokeStyle = "#ccc";
+				context.stroke();	
+			}
+
+			function plot_point()
+			{
+				context.fillRect(X+0.5,Y+0.5,1,1);
+				var c = Math.floor((Math.random() * 3));
+				X = (x[c]+X)/2;
+				Y = (y[c]+Y)/2;
+				setTimeout('plot_point()');
+			}
+
+		</script>
+	</head>	
+
+	<body>
+		<div id="container">
+		<a href="Life.html"><img id="prev" src="prev.png" width="50" height="50" /></a>
+		<a href="index.html"><img id="next" src="next.png" width="50" height="50" /></a>
+		<h1><sup>July 27, 2014</sup>Sierpinski Triangle<sub>- Chintan Ghate</sub></h1>
+		</div>		
+		<p>Click inside the triangle to start or increase the speed !!!</p>
+		<canvas id="a" width = "720" height = "720" onClick = "plot_point()">
+		</canvas>
+		<script>
+			initCanvas();
+		</script>
+	</body>
+</html>
