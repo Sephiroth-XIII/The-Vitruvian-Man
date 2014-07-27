@@ -3,7 +3,7 @@
 <html>
 
 	<head>
-		<title>Koch snowflake</title>
+		<title>Koch Snowflake</title>
 		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
 		<style>
 			body
@@ -56,7 +56,7 @@
 			var canvas;
 			var context;
 
-			function init()
+			function initCanvas()
 			{
 			    canvas = document.getElementById("a");
 			    context = canvas.getContext("2d"); 
@@ -122,12 +122,12 @@
 		<div id="container">
 		<a href="Sierpinski.html"><img id="prev" src="prev.png" width="50" height="50" /></a>
 		<a href="index.html"><img id="next" src="next.png" width="50" height="50" /></a>
-		<h1><sup>July 27, 2014</sup>Koch snowflake<sub>- Chintan Ghate</sub></h1>
+		<h1><sup>July 27, 2014</sup>Koch Snowflake<sub>- Chintan Ghate</sub></h1>
 		</div>
 		<canvas id="a" width = "720" height = "820">
 		</canvas>
 		<script>
-			init();
+			initCanvas();
 		</script>
 	</body>
 </html>
