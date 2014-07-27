@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Koch snowflake</title>
+		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+		<style>
+			body
+			{
+				text-align: center;
+				font-family: 'Calligraffitti', cursive;
+				font-size: 2em;
+			}
+			sub
+			{
+				font-size: 0.15em;
+			}
+			sup
+			{
+				font-size: 0.15em;
+				vertical-align: top;
+			}
+			p
+			{
+				font-size: 0.5em;
+			}
+
+			#container
+			{
+				width: 800px;
+				text-align: center;
+				margin:0 auto;
+			}
+
+			#prev
+			{
+				border-width: 2px;
+				border-color: black;
+				float: left;
+				margin-top: 15px;
+			}
+
+			#next
+			{
+				border-width: 2px;
+				border-color: black;
+				float: right;
+				margin-top: 15px;
+			}
+
+		</style>
+
+		<script>
+
+			var canvas;
+			var context;
+
+			function init()
+			{
+			    canvas = document.getElementById("a");
+			    context = canvas.getContext("2d"); 
+			    
+			    draw_fractal(10.0,213.7822,710.0,213.7822, 5);
+			    draw_fractal(710.0,213.7822,360.0,810.0,5);
+			    draw_fractal(360.0,810.0,10.0,213.7822, 5);
+			}
+
+			function draw_fractal(x1,y1,x2,y2,depth)
+			{
+				if(depth < 0)
+					return;
+
+				var m1x = (x1*2+x2)/3;
+				var m1y = (y1*2+y2)/3;
+
+				var m2x = (x1+x2)/2;
+				var m2y = (y1+y2)/2;
+
+				var m3x = (x1+2*x2)/3;
+				var m3y = (y1+2*y2)/3;
+
+				var elx = 0.5*((m1x+m3x)+Math.sqrt(3.0)*(m3y-m1y));
+				var ely = 0.5*((m1y+m3y)-Math.sqrt(3.0)*(m3x-m1x));
+
+				setTimeout(
+					function()
+					{
+						draw_line(x1,y1,x2,y2, "#000", 0.5);
+						draw_fractal(x1,y1,m1x,m1y, depth-1);
+					    draw_fractal(m1x,m1y,elx,ely, depth-1);
+					    draw_fractal(elx,ely, m3x,m3y, depth-1);
+					    draw_fractal(m3x,m3y, x2,y2, depth-1);
+
+			    		setTimeout(
+							function()
+							{
+							    if (depth !=0)
+							            draw_line(m1x,m1y, m3x,m3y, "#FFF", 4);
+							},950);
+
+					},1000);
+			}
+
+			function draw_line(x1,y1,x2,y2,col,lineWidth)
+			{	
+				x1+=0.5;
+				y1+=0.5;
+				context.beginPath();
+				context.moveTo(x1,y1);
+				context.lineTo(x2,y2);
+				context.strokeStyle = col;
+				context.lineWidth = lineWidth;
+				context.stroke();
+				context.closePath();
+			}
+
+		</script>
+	</head>	
+
+	<body>
+		<div id="container">
+		<a href="Sierpinski.html"><img id="prev" src="prev.png" width="50" height="50" /></a>
+		<a href="index.html"><img id="next" src="next.png" width="50" height="50" /></a>
+		<h1><sup>July 27, 2014</sup>Koch snowflake<sub>- Chintan Ghate</sub></h1>
+		</div>		
+		<p>Click inside the triangle to start or increase the speed !!!</p>
+		<canvas id="a" width = "720" height = "820">
+		</canvas>
+		<script>
+			init();
+		</script>
+	</body>
+</html>
