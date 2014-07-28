@@ -69,8 +69,7 @@
 			}
 
 			function draw_fractal()
-			{		
-				console.log(X+"\t"+Y);
+			{
 				var random = Math.floor((Math.random() * 100));
 				var arr;
 				if(random == 0)
@@ -106,6 +105,14 @@
 				return [-0.15*x+0.28*y , 0.26*x+0.24*y+0.44];
 			}
 
+			function draw_fractal_fast()
+			{
+				for (var i = 0; i < 50 ; i++) 
+				{
+					draw_fractal();	
+				}
+			}
+
 		</script>
 	</head>	
 
@@ -116,7 +123,7 @@
 		<h1><sup>July 28, 2014</sup>Barnsley Fern<sub>- Chintan Ghate</sub></h1>
 		</div>
 		<p>Click inside the rectangle to start or increase the speed !!!</p>
-		<canvas id="a" width = "1040" height = "570" onClick = "draw_fractal()">
+		<canvas id="a" width = "1040" height = "570" onClick = "draw_fractal_fast()">
 		</canvas>
 		<script>
 			initCanvas();
