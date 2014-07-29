@@ -76,9 +76,11 @@
 				}
 
 				iterations = 256-iterations*8;
-				var color = "rgb("+iterations+","+iterations+","+iterations+")";
+				var color = "rgb("+(iterations)+","+(iterations)+","+(iterations)+")";
 				context.fillStyle = color;
 				context.fillRect(px + 0.5, py + 0.5, 1, 1);
+				if(py > 0)
+					context.fillRect(px + 0.5, -py + 0.5, 1, 1);
 			}
 
 			function initCanvas()
@@ -86,13 +88,12 @@
 			    canvas = document.getElementById("a");
 			    context = canvas.getContext("2d");
 
-
 				context.rect(0.5,0.5,1200,800);
 				context.translate(700,400);
 
 				for (var px = -700 ; px < 501; px++)
 				{
-					for (var py = -400; py < 401; py++)
+					for (var py = 0; py < 401; py++)
 					{
 						plotMandelbrotIteration(px, py);
 					}
