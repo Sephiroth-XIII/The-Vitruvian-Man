@@ -55,7 +55,6 @@
 
 			var canvas;
 			var context;
-			var counter = 0;
 
 			function plotMandelbrotIteration(px, py)
 			{
@@ -74,7 +73,6 @@
 					y = (2 * x * y) + y0;
 					x = xtemp;
 					iterations++;
-					++counter; 	
 				}
 
 				iterations = 256-iterations*8;
