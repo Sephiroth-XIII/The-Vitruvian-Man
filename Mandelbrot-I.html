@@ -75,7 +75,7 @@
 					iterations++;
 				}
 
-				iterations = 256-iterations*8;
+				iterations = (iterations*8)%256;
 				var color = "rgb("+(iterations)+","+(iterations)+","+(iterations)+")";
 				context.fillStyle = color;
 				context.fillRect(px + 0.5, py + 0.5, 1, 1);
