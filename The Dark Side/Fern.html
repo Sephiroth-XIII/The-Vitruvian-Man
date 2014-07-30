@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Barnsley fern</title>
+		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+		<style>
+			body
+			{
+				text-align: center;
+				font-family: 'Calligraffitti', cursive;
+				font-size: 2em;
+				background-color: black;
+				color: white;
+			}
+			sub
+			{
+				font-size: 0.15em;
+			}
+			sup
+			{
+				font-size: 0.15em;
+				vertical-align: top;
+			}
+			p
+			{
+				font-size: 0.5em;
+			}
+
+			#container
+			{
+				width: 800px;
+				text-align: center;
+				margin:0 auto;
+			}
+
+			#prev
+			{
+				border-width: 2px;
+				border-color: black;
+				float: left;
+				margin-top: 15px;
+			}
+
+			#next
+			{
+				border-width: 2px;
+				border-color: black;
+				float: right;
+				margin-top: 15px;
+			}
+
+		</style>
+
+		<script>
+
+			var canvas;
+			var context;
+			var X = 0, Y = 0, counter = 0;
+			var colors = ["#0000FF","#4000FF","#8000FF","#BF00FF"];
+
+			function initCanvas()
+			{
+			    canvas = document.getElementById("a");
+			    context = canvas.getContext("2d");
+				context.fillRect(0.5,0.5,1020,550);
+				context.rect(0.5,0.5,1020,550);
+				context.lineWidth = 0.7;
+				context.strokeStyle = "#222";
+				context.stroke();
+			    context.translate(0, 300);
+				context.rotate(-Math.PI/2);
+			}
+
+			function draw_fractal()
+			{		
+				var random = Math.floor((Math.random() * 100));
+				var arr;
+
+				context.fillStyle = colors[counter%4];
+
+				if(random == 0)
+				{
+					arr = f1(X,Y);
+				}
+				else if(random <= 85)
+				{
+					arr = f2(X,Y);
+				}
+				else if(random <= 92)
+				{
+					arr = f3(X,Y);
+				}
+				else
+				{
+					arr = f4(X,Y);
+				}
+				X = arr[0], Y = arr[1];
+				context.fillRect(X*100+0.5,Y*100+0.5,0.5,0.5);
+				++counter;
+				setTimeout('draw_fractal()');
+			}
+
+			function f1(x,y)
+			{
+				return [0 , 0.16*y];
+			}
+
+			function f2(x,y)
+			{
+				return [0.85*x+0.04*y , -0.04*x+0.85*y+1.6];
+			}
+
+			function f3(x,y)
+			{
+				return [0.2*x-0.26*y , 0.23*x+0.22*y+1.6];
+			}
+
+			function f4(x,y)
+			{
+				return [-0.15*x+0.28*y , 0.26*x+0.24*y+0.44];
+			}
+
+			function draw_fractal_fast()
+			{
+				for (var i = 0; i < 100; i++) 
+				{
+					draw_fractal();	
+				}
+			}
+
+		</script>
+	</head>	
+
+	<body>
+		<div id="container">
+		<h1><sup>July 30, 2014</sup>Barnsley Fern<sub>- Chintan Ghate</sub></h1>
+		</div>
+		<p>Click inside the rectangle to start or increase the speed !!!</p>
+		<canvas id="a" width = "1040" height = "570" onClick = "draw_fractal_fast()">
+		</canvas>
+		<script>
+			initCanvas();
+		</script>
+	</body>
+</html>
