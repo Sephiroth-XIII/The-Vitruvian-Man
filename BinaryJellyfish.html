@@ -93,7 +93,7 @@
 					iterations++;
 				}
 
-				var color = 'rgb('+(255-iterations*X)+',0,0)';
+				var color = 'rgb('+(255-iterations*X)+','+(255-iterations*X)+','+(255-iterations*X)+')';
 				context.fillStyle = color;
 				context.fillRect(px + 0.5, py + 0.5, 1, 1);
 			}
