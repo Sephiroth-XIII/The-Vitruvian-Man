@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Binary Jellyfish</title>
+		<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+		<style>
+			body
+			{
+				text-align: center;
+				font-family: 'Calligraffitti', cursive;
+				font-size: 2em;
+				background-color: rgb(38,81,124);
+				color: white;
+			}
+			sub
+			{
+				font-size: 0.15em;
+			}
+			sup
+			{
+				font-size: 0.15em;
+				vertical-align: top;
+			}
+			p
+			{
+				font-size: 0.5em;
+			}
+
+			#container
+			{
+				width: 800px;
+				text-align: center;
+				margin:0 auto;
+			}
+
+			#prev
+			{
+				border-width: 2px;
+				border-color: black;
+				float: left;
+				margin-top: 15px;
+			}
+
+			#next
+			{
+				border-width: 2px;
+				border-color: black;
+				float: right;
+				margin-top: 15px;
+			}
+
+		</style>
+
+		<script>
+
+			var canvas;
+			var context;
+			var maxIterations = 255;
+			var tolerance = 0.001;
+			var X = 13;
+
+			var MinX = 0;
+			var MaxX = 26;
+			var MinY = -13;
+			var MaxY = 13;
+
+			var drag = false;
+
+			var r1 = [1,0];
+
+			function scale(fromMin, fromMax, toMin, toMax, value)
+			{
+				var slope = (toMax - toMin) / (fromMax - fromMin);
+				return (slope * (value - fromMin)) + toMin;
+			}
+
+			function ABS(z,r)
+			{
+				return Math.sqrt((z[0]-r[0])*(z[0]-r[0]) + (z[1]-r[1])*(z[1]-r[1]));
+			}
+
+			function plotNewtonFractal(px, py)
+			{
+				var x0 = scale(0, 1200, MinX, MaxX, px);
+				var y0 = scale(0, 1200, MinY, MaxY, py);
+
+				var z = [x0,y0];
+				var iterations = 0;
+
+				while ((iterations < maxIterations) && ABS(z,r1) >= tolerance)
+				{
+					z = [(2*z[0]+(z[0]/(z[0]*z[0]+z[1]*z[1])))/3.0 , (2*z[1]-(z[1]/(z[0]*z[0]+z[1]*z[1])))/3.0];
+					iterations++;
+				}
+
+				var color = 'rgb('+(Math.abs(255-iterations*X))+','+Math.abs(128-iterations*X)+',128)';
+				context.fillStyle = color;
+				context.fillRect(px + 0.5, py + 0.5, 1, 1);
+			}
+
+			function initCanvas()
+			{
+			    canvas = document.getElementById("a");
+			    context = canvas.getContext("2d");
+				context.translate(canvas.width/2,canvas.height/2);
+				context.rotate(-Math.PI/2);
+				context.translate(-canvas.width/2,-canvas.height/2);
+				for (var px = 0 ; px < 1201; px++)
+				{
+					for (var py = 0; py < 1201; py++)
+					{
+						plotNewtonFractal(px, py);
+					}
+				}
+			}
+
+		</script>
+	</head>	
+
+	<body>
+		<div id="container">
+		<h1><sup>August 4, 2014</sup>Binary&nbsp;&nbsp;Jellyfish<sub>- Chintan Ghate</sub></h1>
+		</div>
+		<canvas id="a" width = "1210" height = "1210">
+		</canvas>
+		<script>
+			initCanvas();
+		</script>
+	</body>
+</html>
